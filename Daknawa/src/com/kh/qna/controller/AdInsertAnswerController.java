@@ -1,25 +1,28 @@
 package com.kh.qna.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.kh.common.model.vo.SubNav;
+import com.kh.qna.model.service.QnaService;
 
 /**
- * Servlet implementation class FaqListController
+ * Servlet implementation class AdInsertAnswerController
  */
-@WebServlet("/faq.qna")
-public class FaqListController extends HttpServlet {
+@WebServlet("/adAnswer.ask")
+public class AdInsertAnswerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FaqListController() {
+    public AdInsertAnswerController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,26 +31,27 @@ public class FaqListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		SubNav sn = new SubNav();
 		
-		sn.setTitle1("MY PAGE");
-		sn.setTitle1Addr("myInfo.me");
-		sn.setTitle2("문의내역");
-		sn.setTitle2Addr("list.ask?currentPage=1");
-		sn.setTitle3("FAQ");
-		sn.setActive1("1");
-		sn.setActive2("1");
-		sn.setActive3("1");
-		sn.setActive4("active");
-		
-		request.setAttribute("sn", sn);
+//		HttpSession session = request.getSession();
+//		int ano = Integer.parseInt(request.getParameter("askNo"));
+//		String aContent = request.getParameter("askContent");
+//		
+//		response.setContentType("text/html; charset=UTF-8"); // 한글이 깨질수있기 때문
+//		
+//		PrintWriter out = response.getWriter(); // 데이터 보내줄 통로 열어주기(출력스트림)
+//		
+//		out.print(response);
+//		
+//		new QnaService().insertAnswer(ano, aContent);
 		
 		
+		response.setContentType("text/html; charset=UTF-8");
 		
+		PrintWriter out = response.getWriter();
 		
-		// faq 화면 포워딩 (하드코딩된 정적인화면을 보여질때도 서블릿 거쳐가기)
-		request.getRequestDispatcher("views/qna/faqList.jsp").forward(request, response);
+		out.print(response);
+		
+		new QnaService().insertAnswer();
 	}
 
 	/**

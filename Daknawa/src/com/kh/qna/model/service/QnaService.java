@@ -102,6 +102,19 @@ public class QnaService {
 		
 		int result = new QnaDao().deleteAsk(conn, askNo);
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		if(result > 0) { 
 			commit(conn);
 		} else {
@@ -111,4 +124,22 @@ public class QnaService {
 
 		return result;
 	}
+	
+	public int insertAnswer(int ano, String aContent) {
+		
+		Connection conn = getConnection();
+		
+		int result = new QnaDao().insertAnswer(conn, ano, aContent);
+		
+		
+		
+	}
+	
+	public Qna selectAnswer() {
+		
+		
+		
+		
+	}
+	
 }

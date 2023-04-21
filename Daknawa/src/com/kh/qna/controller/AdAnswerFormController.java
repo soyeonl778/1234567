@@ -1,25 +1,29 @@
 package com.kh.qna.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.common.model.vo.SubNav;
+import com.kh.member.model.vo.Member;
+import com.kh.qna.model.service.QnaService;
+import com.kh.qna.model.vo.Qna;
 
 /**
- * Servlet implementation class FaqListController
+ * Servlet implementation class AdAnswerFormController
  */
-@WebServlet("/faq.qna")
-public class FaqListController extends HttpServlet {
+@WebServlet("/adAnswerForm.ask")
+public class AdAnswerFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FaqListController() {
+    public AdAnswerFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,26 +32,18 @@ public class FaqListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		SubNav sn = new SubNav();
 		
-		sn.setTitle1("MY PAGE");
-		sn.setTitle1Addr("myInfo.me");
-		sn.setTitle2("문의내역");
-		sn.setTitle2Addr("list.ask?currentPage=1");
-		sn.setTitle3("FAQ");
-		sn.setActive1("1");
-		sn.setActive2("1");
-		sn.setActive3("1");
-		sn.setActive4("active");
+		int memberNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
+		String answerContent = request.getSession().getAttribute()
 		
-		request.setAttribute("sn", sn);
+		Qna q = new Qna();
+		q.setMemberNo(memberNo);
+		q.setAnswerContent(answerContent);
+		
+		ArrayList<Qna> list = new QnaService().selectAnswer(memberNo, q);
 		
 		
 		
-		
-		// faq 화면 포워딩 (하드코딩된 정적인화면을 보여질때도 서블릿 거쳐가기)
-		request.getRequestDispatcher("views/qna/faqList.jsp").forward(request, response);
 	}
 
 	/**

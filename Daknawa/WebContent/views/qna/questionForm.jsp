@@ -166,16 +166,8 @@
 
 	<%@ include file="../common/menubar.jsp" %>
 	
-	<%
-		String userId = loginUser.getUserId();
-		String userNickName = loginUser.getUserNickName();
-		String userName = loginUser.getUserName();
-		String email = loginUser.getEmail();
-		String phone = loginUser.getPhone();
-		String birth = (loginUser.getBirth() == null) ? "" : loginUser.getBirth();
-		String gender = (loginUser.getGender() == null) ? "" : loginUser.getGender();
-		String address = (loginUser.getAddress() == null) ? "" : loginUser.getAddress();
-	%>
+	
+
 	
 	    <section id="container">
       <div class="title">
@@ -230,8 +222,8 @@
         </div>
       <div>
       <label>아이디</label>
-      <input type="hidden" name="memberNo" value="2"> <!-- 회원번호 -->
-      <input type="text" id="id" name="id" value="<%= userId %>" style="background-color: #f2f2f2; width:300px; border:none;" placeholder="아이디를 입력하세요." required disabled>
+      <input type="hidden" name="memberNo" value="<%= loginUser.getUserNo() %>"> <!-- 회원번호 -->
+      <input type="text" id="id" name="id" value="<%= loginUser.getUserId() %>" style="background-color: #f2f2f2; width:300px; border:none;" placeholder="아이디를 입력하세요." required disabled>
       </div>
       <br><hr><br>
 

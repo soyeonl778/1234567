@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.common.model.vo.PageInfo;
+import com.kh.common.model.vo.SubNav;
 import com.kh.member.model.vo.Member;
 import com.kh.qna.model.service.QnaService;
 import com.kh.qna.model.vo.Qna;
@@ -82,6 +83,20 @@ public class AskListController extends HttpServlet {
 		// 조회된 리스트, 페이징바
 		request.setAttribute("list", list);
 		request.setAttribute("pi", pi);
+		
+		SubNav sn = new SubNav();
+		
+		sn.setTitle1("MY PAGE");
+		sn.setTitle1Addr("myInfo.me");
+		sn.setTitle2("문의내역");
+		sn.setTitle2Addr("list.ask?currentPage=1");
+		sn.setTitle3("1:1문의내역관리");
+		sn.setActive1("1");
+		sn.setActive2("1");
+		sn.setActive3("1");
+		sn.setActive4("active");
+		
+		request.setAttribute("sn", sn);
 		
 		request.getRequestDispatcher("views/qna/askList.jsp").forward(request, response);
 

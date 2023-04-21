@@ -214,7 +214,7 @@
             <colgroup>
             <col style="width: 295px;">
             <col>
-            </colgroup>
+            </colgroup>       
             <tbody>
               
             </tbody>

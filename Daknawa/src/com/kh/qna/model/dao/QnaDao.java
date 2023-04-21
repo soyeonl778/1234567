@@ -223,8 +223,25 @@ public class QnaDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
-
-
+	}
+	
+	public int insertAnswer(Connection conn, int ano, String aContent) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertAnswer");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 	
